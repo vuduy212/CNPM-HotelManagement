@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateRoomStatusRequest;
 use App\Http\Requests\UpdateRoomStatusRequest;
 use App\Models\Room;
+use App\Models\RoomCategories;
 use App\Models\RoomStatus;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoomStatusController extends Controller
 {
@@ -25,10 +27,10 @@ class RoomStatusController extends Controller
      */
     public function index(Request $request)
     {
+        $roomCategories = RoomCategories::all();
         $rooms = Room::all();
         $roomStatus = $this->roomStatus->search($request->all());
-        //$roomStatus = RoomStatus::all();
-        return view('AdminPage.room_statuses.index', compact('roomStatus', 'rooms'));
+        return view('AdminPage.room_statuses.index', compact('roomStatus', 'rooms', 'roomCategories'));
     }
 
     /**
@@ -91,8 +93,17 @@ class RoomStatusController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoomStatusRequest $request, RoomStatus $roomStatus)
+    public function update(Request $request, RoomStatus $roomStatus)
     {
+        $this->validate($request, [
+            'time' => [
+                'required',
+                'date_format:"Y-m-d"',
+                //Rule::unique('room_statuses')->ignore($roomStatus),
+            ],
+            'status' => 'required'
+        ]);
+
         $roomStatus->time = $request->time;
         $roomStatus->status = $request->status;
         $roomStatus->room_id = $request->room_id;

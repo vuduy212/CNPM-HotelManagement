@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Room;
 use App\Models\RoomCategories;
 use App\Models\RoomStatus;
+use App\Rules\StrLengthRule;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -88,8 +90,18 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoomRequest $request, Room $room)
+    public function update(Request $request, Room $room)
     {
+        $this->validate($request, [
+            'room_name' => [
+                'required',
+                'alpha_dash',
+                Rule::unique('rooms')->ignore($room),
+                new StrLengthRule()
+            ],
+            'description' => 'required|min:6|max:255',
+        ]);
+
         $room->room_name = $request->room_name;
         $room->category_id = $request->category_id;
         $room->description = $request->description;

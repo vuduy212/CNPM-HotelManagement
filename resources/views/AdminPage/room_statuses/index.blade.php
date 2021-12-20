@@ -17,26 +17,20 @@
                 </div>
 
                 <form action="{{ route("status.index") }}" method="GET" class="md-3 d-flex">
-                    <!-- <div class="col-sm-4"> -->
-                        <select name="room_id" class="form-select form-select-sm">
-                            <option value="">Filter by Room</option>
-                            @foreach ($rooms as $room)
-                                <option value="{{ $room->id }}" {{ request('room_id') == $room->id ? "selected":"" }}> Room {{ $room->room_name }}</option>
-                            @endforeach
-                        </select>
-                    <!-- </div> -->
+                    <select name="room_id" class="form-select form-select-sm">
+                        <option value="">Filter by Room</option>
+                        @foreach ($rooms as $room)
+                            <option value="{{ $room->id }}" {{ request('room_id') == $room->id ? "selected":"" }}> Room {{ $room->room_name }}</option>
+                        @endforeach
+                    </select>
                     <br>
-                    <!-- <div class="col-sm-4"> -->
-                        <select name="filter_status" class="form-select form-select-sm">
-                            <option value="">Filter by Status</option>
-                            <div class="col-md-6">
-                                <option name="status" value="1">Active</option>
-                                <option name="status" value="0">Close</option>
-                            </div>
-                        </select>
-                    <!-- </div> -->
+                    <select name="filter_status" class="form-select form-select-sm">
+                        <option value="">Filter by Status</option>
+                        <option name="status" value="0" {{ request('filter_status') == '0' ? "selected":"" }}>Empty</option>
+                        <option name="status" value="1" {{ request('filter_status') == '1' ? "selected":"" }}>Used</option>
+                    </select>
                     <br>
-                    <input type="text" class="form-control" placeholder="Enter time" name="key" value="{{ request('key') }}">
+                    <input type="date" class="form-control" placeholder="Enter time" name="key" value="{{ request('key') }}">
                     <br>
                     <input type="text" class="form-control" placeholder="Enter number per page" name="number" value="{{ request('number') }}">
                     <br>
@@ -67,7 +61,7 @@
                                 </td>
                                 <td>
                                     @if($status->status == '0') Empty
-                                    @else Active
+                                    @else Used
                                     @endif
                                 </td>
                                 <td>{{$status->time}}</td>

@@ -14,7 +14,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Time</label>
 
                             <div class="col-md-6">
-                                <input id="time" name="time" value="{{ $roomStatus->time }}" type="text" class="form-control @error('time') is-invalid @enderror" >
+                                <input id="time" name="time" value="{{ $roomStatus->time }}" type="date" class="form-control @error('time') is-invalid @enderror" >
                                 @error('time')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -30,7 +30,8 @@
                             <div class="col-md-6">
                                 <select name="room_id" class="form-select form-select-sm">
                                     @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}"> Room {{ $room->room_name }}</option>
+                                        <option value="{{ $room->id }}"
+                                        @if($room->id == $roomStatus->room_id) selected @endif> Room {{ $room->room_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -45,7 +46,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" name="status" value="1" @if($roomStatus->status == 1) checked @endif>
-                                    <label for="">Active</label>
+                                    <label for="">Used</label>
                                 </div>
                             </div>
                         </div>

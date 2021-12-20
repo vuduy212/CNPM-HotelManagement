@@ -14,17 +14,16 @@
                     
                     <select name="filter_status">
                         <option value="">Filter by Status</option>
-                        <option name="bill_status" value="0">Unconfirmed</option>
-                        <option name="bill_status" value="1">Confirmed</option>
-                        <option name="bill_status" value="2">Paid</option>
-                        <option name="bill_status" value="3">Cancelled</option>
+                        <option name="bill_status" value="0" {{ request('filter_status') == '0' ? "selected":"" }}>Unconfirmed</option>
+                        <option name="bill_status" value="1" {{ request('filter_status') == '1' ? "selected":"" }}>Confirmed</option>
+                        <option name="bill_status" value="2" {{ request('filter_status') == '2' ? "selected":"" }}>Paid</option>
+                        <option name="bill_status" value="3" {{ request('filter_status') == '3' ? "selected":"" }}>Cancelled</option>
                     </select>
 
                     <input type="text" class="form-control" placeholder="Enter phonenumber..." name="key" value="{{ request('key') }}">
-                    <input type="text" class="form-control" placeholder="Enter date start..." name="filter_date_start" value="{{ request('date_start') }}">
-                    <input type="text" class="form-control" placeholder="Enter date finish..." name="filter_date_finish" value="{{ request('date_end') }}">
+                    <input type="date" class="form-control" placeholder="Enter date start..." name="filter_date_start" value="{{ request('date_start') }}">
+                    <input type="date" class="form-control" placeholder="Enter date finish..." name="filter_date_finish" value="{{ request('date_end') }}">
                     <input type="text" class="form-control" placeholder="Enter number per page" name="number" value="{{ request('number') }}">
-
 
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
@@ -63,7 +62,11 @@
                                 <td>{{$bill->client_name}}</td>
                                 <td>{{$bill->phone}}</td>
                                 <td>{{$bill->email}}</td>
-                                <td>{{$bill->payment}}</td>
+                                <td>
+                                    @if($bill->payment == '0') Cash
+                                    @else Bank Card
+                                    @endif
+                                </td>
                                 <td>{{$bill->created_at}}</td>
                                 <td>
                                     @if($bill->bill_status == '0') Unconfirmed

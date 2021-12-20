@@ -14,6 +14,19 @@ class RoomStatusesSeeder extends Seeder
      */
     public function run()
     {
+        //demo
+        $v1_101_10_12_2021 = RoomStatus::updateOrCreate([
+            'room_id' => '1',
+            'status' => '0',
+            'time' => '2021-12-10'
+        ]);
+
+        $v1_101_11_12_2021 = RoomStatus::updateOrCreate([
+            'room_id' => '1',
+            'status' => '0',
+            'time' => '2021-12-11'
+        ]);
+
         //ngay dau tien
         $v1_101_1 = RoomStatus::updateOrCreate([
             'room_id' => '1',

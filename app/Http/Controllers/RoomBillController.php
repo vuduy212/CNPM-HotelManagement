@@ -6,6 +6,7 @@ use App\Http\Requests\CreateRoomBillRequest;
 use App\Http\Requests\UpdateRoomBillRequest;
 use App\Models\RoomBill;
 use App\Models\RoomCategories;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RoomBillController extends Controller
@@ -24,7 +25,6 @@ class RoomBillController extends Controller
      */
     public function index(Request $request)
     {
-        //$bills = RoomBill::all();
         $bills = $this->bills->search($request->all());
         $roomCategories = RoomCategories::all();
         return view('AdminPage.room_bills.index', compact('bills', 'roomCategories'));
@@ -52,8 +52,6 @@ class RoomBillController extends Controller
     {
         $this->bills->saveBill($request);
         return view("AdminPage.room_bills.success");
-        // $roomBill = $this->bills;
-        // return redirect(route('bills.show', $roomBill));
     }
 
     /**
@@ -89,8 +87,8 @@ class RoomBillController extends Controller
     {
         $roomBill->bill_status = $request->bill_status;
         $roomBill->payment = $request->payment;
-        $roomBill->date_start = $request->date_start;
-        $roomBill->date_finish = $request->date_finish;
+        $roomBill->date_start = Carbon::parse($request->date_start)->format('Y-m-d');
+        $roomBill->date_finish = Carbon::parse($request->date_finish)->format('Y-m-d');
         $roomBill->save();
 
         return redirect()->route('bills.index');

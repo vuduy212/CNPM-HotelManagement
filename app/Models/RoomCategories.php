@@ -85,9 +85,9 @@ class RoomCategories extends Model
             $this->deleteFile($path);
             $roomCategories['images'] = $this->saveFile($request, 'images');
         }
-        else {
-            $roomCategories['images'] = 'null';
-        }
+        // else {
+        //     $roomCategories['images'] = 'null';
+        // }
 
         $roomCategories->save();
     }

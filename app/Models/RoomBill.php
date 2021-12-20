@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -34,8 +35,10 @@ class RoomBill extends Model
         $bill = $this->create([
             'category_id' => $data['category_id'],
             'client_name' => $data['client_name'],
-            'date_start' => $data['date_start'],
-            'date_finish' => $data['date_finish'],
+            'date_start' => Carbon::parse($data['date_start'])->format('Y-m-d'),
+            'date_finish' => Carbon::parse($data['date_finish'])->format('Y-m-d'),
+            // 'date_start' => $data['date_start'],
+            // 'date_finish' => $data['date_finish'],
             'CMND' => $data['CMND'],
             'phone' => $data['phone'],
             'email' => $data['email'],

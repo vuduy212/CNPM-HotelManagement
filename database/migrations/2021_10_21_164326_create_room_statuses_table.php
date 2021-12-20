@@ -19,7 +19,7 @@ class CreateRoomStatusesTable extends Migration
             $table->boolean('status');
             $table->date('time');
             $table->timestamps();
-            $table->unique(['room_id', 'time']);
+            //$table->unique(['room_id', 'time']);
             $table->foreign('room_id')->references('id')->on('rooms');
         });
     }

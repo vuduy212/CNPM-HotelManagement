@@ -22,6 +22,7 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Description</label>
                             <div class="col-md-6">
@@ -33,12 +34,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Images') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Images</label>
                             <div class="col-md-6">
-                                <input id="images" type="file" name="images" class="form-control" value="{{ $roomCategories->images }}" autofocus>
+                                <input id="images" type="file" name="images" class="form-control" value="{{ $roomCategories->getImage() }}" autofocus>
+                                <td><img src="{{ $roomCategories->getImage() }}" alt="{{ $roomCategories->name }}" class="image-show"></td>
                             </div>
                         </div>
+                        <br>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Price</label>
                             <div class="col-md-6">
@@ -50,6 +54,7 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
                         <button type="submit" class="btn btn-primary">
                             Update
                         </button>

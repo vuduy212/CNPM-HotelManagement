@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item active">Welcome to Room Order !!</li>
             </ol>
             <div class="card">
-                <div class="card-header">{{ __('Order') }}</div>
+                <div class="card-header">Order</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('bills.store') }}">
@@ -25,7 +25,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Date Start') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Date Start* (dd-mm-YYYY)</label>
                             <div class="col-md-6">
                                 <input id="date_start" value="{{ old('date_start') }}" name="date_start" type="text" class="form-control @error('date_start') is-invalid @enderror" >
                                 @error('date_start')
@@ -37,7 +37,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Date Finish') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Date Finish* (dd-mm-YYYY)</label>
                             <div class="col-md-6">
                                 <input id="date_finish" value="{{ old('date_start') }}" name="date_finish" type="text" class="form-control @error('date_finish') is-invalid @enderror" >
                                 @error('date_finish')
@@ -49,7 +49,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name*</label>
                             <div class="col-md-6">
                                 <input id="client_name" value="{{ old('client_name') }}" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" >
                                 @error('client_name')
@@ -61,7 +61,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('CMND') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">CMND*</label>
                             <div class="col-md-6">
                                 <input id="CMND" value="{{ old('CMND') }}" name="CMND" type="text" class="form-control @error('CMND') is-invalid @enderror" >
                                 @error('CMND')
@@ -73,7 +73,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Phone number*</label>
                             <div class="col-md-6">
                                 <input id="phone" value="{{ old('phone') }}" name="phone" type="text" class="form-control @error('phone') is-invalid @enderror" >
                                 @error('phone')
@@ -85,7 +85,7 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Email</label>
                             <div class="col-md-6">
                                 <input id="email" value="{{ old('email') }}" name="email" type="text" class="form-control @error('email') is-invalid @enderror" >
                                 @error('email')
@@ -113,7 +113,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Submit') }}
+                                    Order
                                 </button>
                             </div>
                         </div>

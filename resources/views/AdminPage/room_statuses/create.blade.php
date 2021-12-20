@@ -51,7 +51,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Time') }}</label>
                             <div class="col-md-6">
-                                <input id="time" value="{{ old('time') }}" name="time" type="text" class="form-control @error('time') is-invalid @enderror" >
+                                <input id="time" value="{{ old('time') }}" name="time" type="date" class="form-control @error('time') is-invalid @enderror" >
                                 @error('time')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
